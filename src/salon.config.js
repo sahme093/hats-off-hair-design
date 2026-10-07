@@ -3,90 +3,84 @@
 //  Everything specific to one salon lives in this file. Edit the values below,
 //  replace the photos in public/img/, and the whole site updates.
 //
-//  After changing `name`, `logoLetter`, `seo` or `theme`, restart `npm run dev`
+//  After changing `name`, `seo` or `theme`, restart `npm run dev`
 //  so the browser-tab title and icon pick up the change.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const salon = {
   // Shown in the header, footer, browser tab and the text message.
-  name: 'Salon Name',
+  name: 'Hats Off Hair Design',
 
-  // Letter inside the arch logo (browser tab icon).
-  logoLetter: 'S',
+  // Two-line wordmark beside the hat logo in the header and footer.
+  logo: { lead: 'Hats Off', sub: 'Hair Design' },
 
   // Big headline at the top. `accent` is shown in italics.
-  heroTitle: { lead: 'Salon', accent: 'Name' },
+  heroTitle: { lead: 'Hats Off', accent: 'Hair Design' },
 
-  // Small gold line above the headline.
-  eyebrow: 'Hair salon · Your City, ST',
+  // Small line above the headline.
+  eyebrow: 'Hair salon · Sun City, CA',
 
   // One-sentence description under the headline.
-  tagline: 'Welcoming hair salon offering professional haircuts and customized hair coloring.',
+  tagline:
+    'Cuts, color and special-occasion styling in a cute, spotless little shop in Sun City, where clients stay for years.',
 
   // Short quote beside the hero photos (desktop only). Use a real review line.
-  heroQuote: '“Short quote from a happy client goes here.”',
+  heroQuote: '“Strangers stop and ask me for my stylist. The cut does make a difference!”',
 
   phone: {
-    display: '(555) 555-5555',
+    display: '(951) 679-9388',
     // Same number in international format: + country code, then digits only.
-    e164: '+15555555555',
+    e164: '+19516799388',
   },
 
   address: {
-    street: '123 Main Street',
-    cityLine: 'Your City, ST 00000',
+    street: '27136 Shadel Rd',
+    cityLine: 'Sun City, CA 92586',
     // Shorter version used in the hero facts row.
-    short: '123 Main St, Your City',
+    short: '27136 Shadel Rd, Sun City',
   },
 
-  // Exactly 7 days, Monday first. Mark closed days with `closed: true`
-  // (the booking form warns customers who pick one).
-  hours: [
-    { day: 'Monday', time: '9am – 5pm' },
-    { day: 'Tuesday', time: '9am – 5pm' },
-    { day: 'Wednesday', time: '9am – 5pm' },
-    { day: 'Thursday', time: '9am – 5pm' },
-    { day: 'Friday', time: '9am – 5pm' },
-    { day: 'Saturday', time: '9am – 5pm' },
-    { day: 'Sunday', time: 'Closed', closed: true },
-  ],
-
-  // One-line summaries used in the hero, footer and mobile "Visit" section.
-  hoursSummary: {
-    open: 'Mon–Sat 9am–5pm',
-    closed: 'Sunday',
-  },
+  // Hours aren't published, so every hours section is hidden. To show them, list
+  // exactly 7 days, Monday first, marking closed days with `closed: true`, e.g.
+  //   { day: 'Monday', time: '9am – 5pm' }, …, { day: 'Sunday', time: 'Closed', closed: true }
+  // and fill in hoursSummary: { open: 'Mon–Sat 9am–5pm', closed: 'Sunday' }.
+  hours: [],
+  hoursSummary: null,
 
   // Browser tab title and Google description.
   seo: {
-    title: 'Salon Name · Hair Salon in Your City, ST',
+    title: 'Hats Off Hair Design · Hair Salon in Sun City, CA',
     description:
-      'Salon Name — welcoming hair salon in Your City, ST offering professional haircuts and customized hair coloring.',
+      'Hats Off Hair Design — friendly neighborhood hair salon in Sun City, CA offering haircuts, color, highlights and wedding & special-occasion styling.',
   },
 
   // Brand colors. `primary` is the dark background; `accent` is buttons and highlights.
   theme: {
-    primary: '#1f3328',
-    accent: '#d9bd85',
-    accentHover: '#e6cd99',
-    accentDeep: '#8a6a35', // darker accent for small labels on light backgrounds
+    primary: '#3f1d2b', // mulberry
+    accent: '#efc1b4', // blush rose
+    accentHover: '#f6d4ca',
+    accentDeep: '#9b4652', // darker accent for small labels on light backgrounds
   },
 
-  // Photos live in public/img/. Swap the files, or change the paths here.
+  // Photos live in public/img/. `position` is the focal point when a photo is cropped.
   images: {
-    heroArch: { src: '/img/hero.svg', alt: 'Hair styled at the salon' },
-    heroSide: { src: '/img/hero-side.svg', alt: 'Hair styled at the salon' },
+    heroArch: {
+      src: '/img/floral-updo.jpg',
+      alt: 'Bridal updo with a crown of blush and burgundy roses',
+      position: '50% 42%',
+    },
+    heroSide: {
+      src: '/img/stylist-at-work.jpg',
+      alt: 'Stylist pinning up a client’s hair in the salon',
+      position: '50% 30%',
+    },
   },
 
+  // The gallery section is hidden while `items` is empty. Add photos here when you have them:
+  //   { src: '/img/look-1.jpg', label: 'Soft highlights' }
   gallery: {
     note: 'Color, cuts and styling from our chairs.',
-    items: [
-      { src: '/img/gallery-1.svg', label: 'Look one' },
-      { src: '/img/gallery-2.svg', label: 'Look two' },
-      { src: '/img/gallery-3.svg', label: 'Look three' },
-      { src: '/img/gallery-4.svg', label: 'Look four' },
-      { src: '/img/gallery-5.svg', label: 'Look five' },
-    ],
+    items: [],
   },
 
   services: {
@@ -94,32 +88,52 @@ const salon = {
     groups: [
       {
         name: 'Cut & style',
-        items: ['Haircut', 'Bang trim', 'Blowout', 'Hairstyling', 'Updos'],
+        items: ['Haircut', 'Blowout & style', 'Updos', 'Wedding & special-occasion hair'],
       },
       {
         name: 'Color',
-        items: ['Hair coloring', 'Balayage', 'Highlights', 'Gloss or glaze'],
+        items: ['All-over color', 'Highlights', 'Lightening', 'Root touch-up'],
       },
       {
-        name: 'Treatments',
-        items: ['Keratin treatment', 'Hydration treatment', 'Hair extensions'],
+        name: 'Nails',
+        items: ['Manicure', 'Special-occasion nails'],
       },
     ],
   },
 
   reviews: {
-    note: 'From recent Google reviews',
-    // Paste real reviews (with permission). 3–6 works best.
+    note: 'From Google reviews',
     items: [
-      { name: 'Client name', when: '1 month ago', text: 'Review text goes here. Paste a real review from Google or Yelp.' },
-      { name: 'Client name', when: '2 months ago', text: 'Review text goes here. Longer reviews are fine — on phones they are trimmed to about eight lines.' },
-      { name: 'Client name', when: '3 months ago', text: 'Review text goes here.' },
-      { name: 'Client name', when: '4 months ago', text: 'Review text goes here.' },
+      {
+        name: 'Patty',
+        when: 'a year ago',
+        text: 'Today was my first day at Hats Off. Lina did my hair highlights, base, lift and haircut, and she did a fantastic job. I definitely give her five stars, and the salon, and I will be returning. Thank you so much!',
+      },
+      {
+        name: 'Margaret “Peggy” Nightengale',
+        when: '2 years ago',
+        text: 'Janet (owner/operator) cuts my hair and does a beautiful job. Since her smiling self has been doing my hair, I have received multiple compliments, strangers stop and ask me for my stylist. The cut does make a difference!',
+      },
+      {
+        name: 'Linda Gatewood',
+        when: '4 years ago',
+        text: 'Rose did an amazing job with what she had to work with! She kept me engaged in conversation, explained everything she was doing, everybody was very friendly and hospitable! I would highly recommend this salon, and will be a permanent client as long as I am living where I am!\nThank you so much Rose for making today a very enjoyable experience!',
+      },
+      {
+        name: 'Cathy Maestas',
+        when: '5 years ago',
+        text: 'Janet is the owner and gives me the best haircuts I’ve had in 8 years. Not only is she affordable, she works with your schedule. It’s a cute shop and very clean. Give her a try!',
+      },
+      {
+        name: 'Wendy Collison',
+        when: '6 years ago',
+        text: 'I was new to the area and this is very close to home. I got married Feb 2020 and I wanted my hair done for my wedding and they did an amazing job. I also got my nails done; they matched my dress perfectly. Thank you, ladies, for making my day very special.',
+      },
     ],
   },
 
   booking: {
-    notesPlaceholder: 'e.g. Virgin hair, want low-maintenance highlights, not too blonde',
+    notesPlaceholder: 'e.g. Wedding on June 12, want a soft updo with flowers',
   },
 };
 

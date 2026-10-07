@@ -1,23 +1,24 @@
 :root {
-  --green: #1f3328;
+  /* Variable names come from the template; colors are the Hats Off palette. */
+  --green: #3f1d2b;
   --green-bubble: #2f7d5b;
-  --brass: #d9bd85;
-  --brass-hover: #e6cd99;
-  --brass-deep: #8a6a35;
-  --star: #b08c4f;
-  --cream: #f6f2ea;
-  --cream-card: #f9f6f0;
-  --cream-chip: #fbf9f4;
-  --sand: #ece5d6;
-  --ink: #1e221f;
-  --muted: #5b5f57;
-  --on-green: #d8d3c6;
-  --on-green-soft: #e8e1d2;
-  --on-green-faint: #b9b4a6;
-  --line: #d6cfbf;
-  --line-soft: #e3ddcf;
-  --serif: 'Bodoni Moda', Georgia, serif;
-  --sans: Manrope, system-ui, sans-serif;
+  --brass: #efc1b4;
+  --brass-hover: #f6d4ca;
+  --brass-deep: #9b4652;
+  --star: #c46d6a;
+  --cream: #fbf5f0;
+  --cream-card: #fffaf7;
+  --cream-chip: #fffbf9;
+  --sand: #f4e3dc;
+  --ink: #2b1a21;
+  --muted: #6b5a60;
+  --on-green: #e5d3d6;
+  --on-green-soft: #f2e5e5;
+  --on-green-faint: #c4a9b0;
+  --line: #e6d2ca;
+  --line-soft: #efe0da;
+  --serif: Fraunces, Georgia, serif;
+  --sans: 'Nunito Sans', system-ui, sans-serif;
   --gutter: 20px;
   --mobile-bar-h: 88px;
 }
@@ -82,14 +83,37 @@ em {
 
 /* ---------- shared bits ---------- */
 .brand {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 21px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   color: var(--cream);
   text-decoration: none;
 }
 .brand:hover {
   color: var(--cream);
+}
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  flex: none;
+}
+.brand-words {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.brand-lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 23px;
+}
+.brand-sub {
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brass);
 }
 
 .eyebrow {
@@ -242,10 +266,16 @@ em {
 .hero-facts-mobile {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
   font-size: 14px;
   color: var(--on-green);
   border-top: 1px solid rgba(246, 242, 234, 0.15);
   padding-top: 16px;
+}
+.hero-facts-mobile a {
+  color: var(--brass);
+  font-weight: 600;
+  text-decoration: none;
 }
 
 /* ---------- gallery ---------- */
@@ -597,9 +627,15 @@ em {
   .site-header {
     padding: 22px var(--gutter);
   }
-  .site-header .brand {
-    font-size: 26px;
-    letter-spacing: 0.01em;
+  .site-header .brand-mark {
+    width: 52px;
+    height: 52px;
+  }
+  .site-header .brand-lead {
+    font-size: 28px;
+  }
+  .site-header .brand-sub {
+    font-size: 11px;
   }
 
   /* hero */
@@ -696,13 +732,15 @@ em {
   }
 
   /* services */
-  .services-section {
-    padding-top: 72px;
-  }
   .services {
     display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  .gallery-section + .services-section {
+    padding-top: 72px;
+  }
+  .gallery-section + .services-section .services {
     border-top: 1px solid var(--line);
     padding-top: 56px;
   }
@@ -927,8 +965,8 @@ em {
     color: var(--on-green);
     font-size: 14px;
   }
-  .site-footer .brand {
-    font-size: 22px;
+  .site-footer .brand-lead {
+    font-size: 24px;
   }
   .footer-info {
     display: flex;

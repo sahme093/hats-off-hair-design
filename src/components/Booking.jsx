@@ -103,18 +103,26 @@ export default function Booking({ form, setForm, request }) {
               <div className="visit-address">{address.street}<br />{address.cityLine}</div>
               <a href={mapsUrl} target="_blank" rel="noreferrer" className="text-link">Get directions →</a>
             </div>
-            <div className="visit-col">
-              <div className="label">Hours</div>
-              {hours.map((h, i) => (
-                <div
-                  key={h.day}
-                  className={'hours-row' + (h.closed ? ' is-closed' : '') + (i === todayIndex ? ' is-today' : '')}
-                >
-                  <span>{h.day}</span>
-                  <span>{h.time}</span>
-                </div>
-              ))}
-            </div>
+            {hours.length > 0 ? (
+              <div className="visit-col">
+                <div className="label">Hours</div>
+                {hours.map((h, i) => (
+                  <div
+                    key={h.day}
+                    className={'hours-row' + (h.closed ? ' is-closed' : '') + (i === todayIndex ? ' is-today' : '')}
+                  >
+                    <span>{h.day}</span>
+                    <span>{h.time}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="visit-col">
+                <div className="label">Call or text</div>
+                <div className="visit-address">{phone.display}</div>
+                <a href={`tel:${phone.e164}`} className="text-link">Call the salon →</a>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -126,7 +134,9 @@ export default function Booking({ form, setForm, request }) {
           <a href={mapsUrl} target="_blank" rel="noreferrer" className="text-link">Directions →</a>
           <a href={`tel:${phone.e164}`} className="text-link">{phone.display}</a>
         </div>
-        <div className="muted">{salon.hoursSummary.open} · Closed {salon.hoursSummary.closed}</div>
+        {salon.hoursSummary && (
+          <div className="muted">{salon.hoursSummary.open} · Closed {salon.hoursSummary.closed}</div>
+        )}
       </section>
     </>
   );

@@ -1,6 +1,7 @@
 import salon from '../salon.config.js';
 
 export default function Gallery() {
+  if (salon.gallery.items.length === 0) return null;
   return (
     <section className="section gallery-section" id="work">
       <div className="section-head">
